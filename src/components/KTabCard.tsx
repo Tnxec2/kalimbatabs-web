@@ -4,6 +4,7 @@ import { KTab } from '../models/KTab';
 import { Rating } from './rating/rating';
 import Song from './song/song';
 import { Keys } from './keys/keys';
+import SongEditDialog from './editsong/editsong';
 
 
 type Props = {
@@ -52,7 +53,7 @@ const KTabCard: FC<Props> = ({ktab, readOnly, onReload}) => {
                     open={open.view}
                     readOnly={readOnly} />
             }
-            {/* {open.edit &&
+            {open.edit &&
                 <SongEditDialog
                     titleDialog='Edit Kalimba Tab'
                     onClose={handleClose} 
@@ -65,7 +66,7 @@ const KTabCard: FC<Props> = ({ktab, readOnly, onReload}) => {
                     toEditKeysCount={ktab.keysCount}
                     id={ktab._id}
                     open={open.edit} />
-            } */}
+            } 
         </>
     )
 }
