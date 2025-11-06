@@ -14,7 +14,7 @@ const Navigation: FC = () => {
     return (
         <>
             <Navbar bg="light" expand="lg">
-                <Navbar.Brand href="/" className="mx-2">Tnx Kalimba Tabs</Navbar.Brand>
+                <Navbar.Brand href="/" className="mx-2">Tnxec2 Kalimba Tabs</Navbar.Brand>
 
                 <Nav className="ms-auto">
                     { !token ? 
