@@ -6,6 +6,6 @@ export const Config = {
     defaultTune: Tunes.NUMBER,
     defaultKeysCount: 17,
     defaultSortField: 'updated',
-    localStorageKeyToken: 'con.kontranik.kalimba.token'
+    localStorageKeyToken: 'com.kontranik.kalimba.token'
 }
 

@@ -1,6 +1,6 @@
 import  { FC } from "react"
 import { Formik } from 'formik'
-import { Button, Container, Form } from 'react-bootstrap'
+import { Button, Card, Container, Form } from 'react-bootstrap'
 import * as yup from 'yup'
 import { useState } from 'react'
 import Loading from '../components/Loading'
@@ -47,6 +47,8 @@ const LogIn: FC<Props> = ({onLogin}) => {
 
     return (
         <Container className='d-flex justify-content-center mt-3'>
+            <Card>
+                <Card.Body>
             <Formik
                 initialValues={{
                     username: '',
@@ -60,7 +62,6 @@ const LogIn: FC<Props> = ({onLogin}) => {
                     <Form noValidate onSubmit={handleSubmit}>
                         {loading && <Loading />}
                         {!loading && (<div>
-                            <h1>Login</h1>
                             <Form.Group>
                                 <Form.Label>Username</Form.Label>
                                 <Form.Control type="text" name="username" value={values.username} onChange={handleChange}  />
@@ -78,6 +79,8 @@ const LogIn: FC<Props> = ({onLogin}) => {
                     </Form>
                 )}
             </Formik>
+            </Card.Body>
+            </Card>
         </Container>
     )
 }

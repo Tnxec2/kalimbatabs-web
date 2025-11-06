@@ -2,6 +2,7 @@ import React, { FC, useState } from "react"
 import { Nav, Navbar } from "react-bootstrap"
 import { useAuth } from "../context/AuthContext";
 import LogIn from "../pages/LogIn";
+import Modal from "./modal/modal";
 
 
 const Navigation: FC = () => {
@@ -19,14 +20,14 @@ const Navigation: FC = () => {
                     { !token ? 
                         <Navbar>
                             <Nav.Link href='# ' className="mx-2" onClick={() => setShowLogin(true)}>
-                                Sign In
+                                🔑 Sign In
                             </Nav.Link>
                         </Navbar> 
                         : 
                         <Navbar>
-                            <Navbar.Text>
-                                {username}
-                            </Navbar.Text>
+                            <Navbar.Brand>
+                                👽 {username}
+                            </Navbar.Brand>
                             <Nav.Link href='# ' className="mx-2" onClick={logout}>
                                 Log out
                             </Nav.Link>
@@ -34,7 +35,11 @@ const Navigation: FC = () => {
                     }
                 </Nav>
             </Navbar>
-            { showLogin ? <LogIn onLogin={() => setShowLogin(false) } /> : ''} 
+            
+                <Modal open={showLogin} modalLabel='Login' onClose={() => setShowLogin(false)}>
+                    <LogIn onLogin={() => setShowLogin(false) } /> 
+                </Modal>
+            
         </>
     )
 }

@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { Config } from '../config/Config';
+import { jwtDecode, JwtPayload } from 'jwt-decode';
 
 // Typen für Context-Werte
 interface AuthContextType {
@@ -24,10 +25,16 @@ const AuthContext = createContext<AuthContextType>({
   isAuthenticated: false,
 });
 
+const extractUsername = (token: string | null): string | null => {
+  
+  if (!token) return null
+  return (jwtDecode(token) as any).username;
+}
+
 // Provider-Komponente
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-  const [token, setToken] = useState<string | null>(() => localStorage.getItem('token'));
-  const [username, setUsername] = useState<string | null>(() => localStorage.getItem('username'));
+  const [token, setToken] = useState<string | null>(() => localStorage.getItem(Config.localStorageKeyToken));
+  const [username, setUsername] = useState<string | null>(() => extractUsername(token));
 
   // Token speichern/entfernen bei Änderung
   useEffect(() => {
@@ -37,6 +44,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       localStorage.removeItem(Config.localStorageKeyToken);
     }
   }, [token]);
+
 
   const login = (newToken: string, username: string) => {
     setToken(newToken);
